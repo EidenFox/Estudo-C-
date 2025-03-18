@@ -1,20 +1,27 @@
 # Estudos de C++
-Estou aprendendo c++ e fazendo alguns exercícios. Não estou fazendo nenhum curso especifico, apenas aprendendo e fazendo exercícios por que gosto de programar e da linguagem C e C++.
-Aprendi C na faculdade de Engenharia de Software e em cursos online, c++ estou aprendendo por meio de vídeos e forums na internet.
+Bem-vindo ao meu repositório de estudos em C++! Aqui, compartilho exercícios e projetos pessoais que desenvolvo enquanto aprendo e pratico a linguagem C++.
 
-Referencias:
+## Sobre Mim
+Cursei 2.5 anos de Engenharia de Software e atualmente curso Análise e Desenvolvimento de Software. Tenho experiência em programação em C, adquirida tanto na faculdade quanto em cursos online. Atualmente, estou expandindo meus conhecimentos para C++ através de vídeos e fóruns na internet.
+
+## Objetivo
+Este repositório serve como um espaço para armazenar e compartilhar os exercícios e projetos que realizo. Meu foco principal é resolver os problemas propostos, sem me preocupar com otimizações ou uso profissional. A ideia é aprender e me divertir programando.
+
+Referências
+[Adicionarei referências aqui se eu lembrar :)]
 
 
 
-## Este Repositório é pra eu postar os exercicios que for fazendo e alguns projetos pessoais em C++, não estou focando em otimização, apenas em resolver os problemas dos exercicios ou projetos sem a intenção de otimizar ou de usar de maneira séria, apenas passar tempo.
+# 😸	
 
-# 😸
+# C++ Studies
+Welcome to my C++ studies repository! Here, I share exercises and personal projects that I develop while learning and practicing C++.
 
+## About Me
+I studied Software Engineering for 2.5 years and am currently pursuing a degree in Analysis and Systems Development. I have experience in C programming, gained both in college and through online courses. Currently, I am expanding my knowledge to C++ by watching videos and participating in online forums.
 
-# C++ Studies 
-I'm learning c++ and doing some exercises. I'm not doing any specific courses, just learning and doing some exercices just because i like coding anc C/C++.
-I learned C on Software Engeneering College and online courses, i'm learning C++ watching videos and on internet forums.
+## Purpose
+This repository serves as a space to store and share the exercises and projects I work on. My main focus is on solving the proposed problems without worrying about optimizations or professional use. The idea is to learn and have fun coding.
 
-References:
-
-## This repository is for me to post the exercises and some personal projects in C++, I am not focusing on optimization, just on solving the problems of the exercises or projects without the intention of optimizing or using them seriously, just to pass the time.
+References
+[I'll add references here if I remember :)]
