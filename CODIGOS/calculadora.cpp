@@ -28,45 +28,46 @@ void avancado (double n1, double n2, char op){
 		cout << n1; cin >> op >> n2;
 		
 		switch(op){
-			case "+":
+			case '+':
 				n1 = n1 + n2;
 			
 	       		break;
-			case "-":
-        		n1 = n1 - n2
+			case '-':
+        		n1 = n1 - n2;
         	
         		break;
-			case "/":
-				if (n1 or n2 == 0){
-					cout >> "Impossivel fazer a operação com 0"
+			case '/':
+				if (n1 == 0 || n2 == 0){
+					cout << "Impossivel fazer a operação com 0";
+					system("pause");
+					
 				}else {
-        		n1 = / n2 
+        		n1 = n1 / n2 ;
  				}
  				
         		break;
-			case "*":
-	        	n1 = n1 * n2
+			case '*':
+	        	n1 = n1 * n2;
 
 	       		break;
-			case "=":
+			case '=':
         		
         		system("cls");
-        		cout << "Resultado da conta: " << n1; endln;
+        		cout << "Resultado da conta: " << n1 << endl;
         		break;
 			default:
 				system("cls");
-				cout << "Operador não reconhecido";
+				cout << "Operador não reconhecido" << endl;
 				system("pause");				
         		break;	
-		} while (loop != 1);
-		
-	}
+		}
+	}while (loop != 1);
 	
-	cout << n1 << op << n2; endln;
+	cout << n1 << op << n2 << endl;
 	
 	system("pause");
-	
 }
+
 
 
 
