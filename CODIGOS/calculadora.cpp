@@ -1,29 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <locale.h>
 #include <math.h>
-#include <iostream>
 #include <Windows.h>
 #include <iomanip>
-#include <string.h>
+#include <iostream>
+#include <string>
 using namespace std;
 
 void simplificada() {
     // Implementação da função simplificada
+    cout << "Ainda Não Implementado" << endl;
+	system("pause");
 }
 
-void avancado(double n1, double n2, string op) {
+void avancado(double n1, double n2, char op) {
     int loop = 0;
+    
+     
 
     cin >> n1;
 
     do {
         system("cls");
-
-        cout << n1 << " "; cin >> op;
-        if(op != '=') {
-            cin >> n2;
+		
+		
+		
+		
+		
+        cout << n1 << " "; 
+		cin >> op;
+        
+		
+		/*cout << op << endl;
+		system ("pause");
+		*/
+		
+		if(op != '=') {
+            cout << " "; cin >> n2;
         }
 
         switch(op) {
@@ -45,7 +59,7 @@ void avancado(double n1, double n2, string op) {
                 n1 = n1 * n2;
                 break;
             case 's':
-                n1 = sqrt(n1);
+                cout << "Conta de raiz" << endl;
                 break;
             case '=':
                 system("cls");
@@ -67,7 +81,7 @@ int main() {
 
     int menu = 0;
     double n1, n2 = 0;
-    string op;
+    char op;
 
     do {
         system("cls");
@@ -85,6 +99,7 @@ int main() {
                 simplificada();
                 break;
             case 2:
+            	cout << "Calculadora Avançada" << endl; cout << "Escreva \"=\" para sair" << endl;
                 avancado(n1, n2, op);
                 break;
             case 3:
