@@ -9,13 +9,67 @@
 using namespace std;
 
 void simplificada() {
-    // Implementação da função simplificada
-    cout << "Ainda Não Implementado" << endl;
-	system("pause");
+   int op, loop = 0;
+   double n1,n2;
+   
+   
+   cout << "Bem vindo a Calculadora, primeiramente digite o seu primeiro valor: "; cin >> n1;   
+   do{
+		system ("cls");
+		cout << "Valor de n1 = " << n1 << endl;
+		cout << "" << endl;
+		cout << "Agora escolha a operação a ser feita" << endl;
+		puts("Operadores:");
+		puts("1. Soma");
+		puts("2. Subtração");
+		puts("3. Divisão");
+		puts("4. Multiplicação");
+		puts("5. Potência");
+		puts("6. SAIR");
+		cin >> op;
+	   
+	    if (op != 6){
+	   		cout << "Agora digite o segundo valor: "; cin >> n2;
+	    }
+	   
+	    switch(op) {
+            case 1:
+                n1 = n1 + n2;
+                break;
+            case 2:
+                n1 = n1 - n2;
+                break;
+            case 3:
+                if (n2 == 0) {
+                    cout << "Impossível fazer a operação com 0" << endl;
+                    system("pause");
+                } else {
+                    n1 = n1 / n2;
+                }
+                break;
+            case 4:
+                n1 = n1 * n2;
+                break;
+            case 5:
+                n1 = pow(n1, n2);
+                break;
+            case 6:
+                system("cls");
+                cout << "Resultado da conta: " << n1 << endl;
+                system("pause");
+                loop = 1;
+                break;
+            default:
+                system("cls");
+                cout << "Operador não reconhecido" << endl;
+                system("pause");
+                break;
+	    }
+	} while (loop != 1);  
 }
 
 void avancado(double n1, double n2, char op) {
-    int loop = 0;
+    int loop, x = 0;
     
      
 
@@ -23,18 +77,12 @@ void avancado(double n1, double n2, char op) {
 
     do {
         system("cls");
-		
-		
-		
-		
+			
 		
         cout << n1 << " "; 
 		cin >> op;
         
-		
-		/*cout << op << endl;
-		system ("pause");
-		*/
+        
 		
 		if(op != '=') {
             cout << " "; cin >> n2;
@@ -58,8 +106,8 @@ void avancado(double n1, double n2, char op) {
             case '*':
                 n1 = n1 * n2;
                 break;
-            case 's':
-                cout << "Conta de raiz" << endl;
+            case '^':
+                n1 = pow(n1, n2);
                 break;
             case '=':
                 system("cls");
