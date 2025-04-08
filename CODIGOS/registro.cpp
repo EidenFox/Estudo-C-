@@ -61,7 +61,7 @@ void view(vector<products>& productList) {
 
 
 
-int main() {
+int main() {s
     SetConsoleOutputCP(CP_UTF8);
     
 	vector<products> productList;
