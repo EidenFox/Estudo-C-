@@ -43,20 +43,19 @@ void addProduct(vector<products>& productList) {
 }
 void view(vector<products>& productList) {
 	int i;
-    /*for (const auto &product : products) {
-        cout << "Nome: " << product.name << endl;
-        cout << "Detalhes: " << product.details << endl;
-        cout << "Preço: " << product.price << endl;
-        cout << "Estoque: " << product.stock << endl;
-        cout << "Código: " << product.code << endl;
-        cout << "----------------------" << endl;
-    }*/
-    
-    cout << "Fora do for: " << productList.size() << endl;
     
     for (i = 0; i <= productList.size(); i++){
-    cout << "Dentro do For: " << i << endl;
+    	cout << ------------------------------------- << endl;
+    	cout << "Produto: " i+1 << endl;
+    	cout << "Código: " << endl;
+    	
 	}	
+}
+
+
+void search(vector<products>& productList) {
+	int i, op, menu;
+    	
 }
 
 
@@ -74,8 +73,8 @@ int main() {s
 		menu = 0;
 		
 		cout << "Quantidade de registros: " << productList.size() << "\n\n" << endl;
-		cout << "Escolha a opção desejada" << endl; cout << "1. Cadastrar contato" << endl; cout << "2. Ver lista" << endl; cout << "3. Editar" << endl;
-		cout << "4. Excluir" << endl; cout << "5. Sair" << endl; cout << endl; 
+		cout << "Escolha a opção desejada" << endl; cout << "1. Cadastrar contato" << endl; cout << "2. Ver lista" << endl; cout << "4. Editar" << endl;
+		cout << "5. Excluir" << endl; cout << "0. Sair" << endl; cout << endl; 
 		cin >> op;
 		
 		switch (op){
@@ -85,14 +84,17 @@ int main() {s
 			case 2:
 				 view(productList);
 				break;
-			/*case 3: 
+			case 3: 
+				search();
+				break;
+			/*case 4: 
 				//edit();
 				break;
-			case 4:
+			case 5:
 				//erase();
 				break;
 				*/
-			case 5:
+			case 0:
 				cout << "Saindo..." << endl;
 				menu = 1;
 				break;
