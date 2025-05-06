@@ -41,26 +41,32 @@ void addProduct(vector<products>& productList) {
 	productList.push_back(newProduct);
 	
 }
-void view(vector<products>& productList) {
+/*void view(vector<products>& productList) {
 	int i;
     
     for (i = 0; i <= productList.size(); i++){
-    	cout << ------------------------------------- << endl;
-    	cout << "Produto: " i+1 << endl;
-    	cout << "Código: " << endl;
+    	cout << "------------------------------------" << endl;
+    	cout << "Código: " << i+1 << endl;
+    	cout << "Nome do Produto: " << productList endl;
     	
 	}	
 }
+*/
 
+void view(struct products *){
+	cout << "teste";
+	
+}
 
 void search(vector<products>& productList) {
 	int i, op, menu;
+	
     	
 }
 
 
 
-int main() {s
+int main() {
     SetConsoleOutputCP(CP_UTF8);
     
 	vector<products> productList;
@@ -73,7 +79,7 @@ int main() {s
 		menu = 0;
 		
 		cout << "Quantidade de registros: " << productList.size() << "\n\n" << endl;
-		cout << "Escolha a opção desejada" << endl; cout << "1. Cadastrar contato" << endl; cout << "2. Ver lista" << endl; cout << "4. Editar" << endl;
+		cout << "Escolha a opção desejada" << endl; cout << "1. Cadastrar contato" << endl; cout << "2. Ver lista" << endl; cout << "3. Pesquisar" << endl; cout << "4. Editar" << endl;
 		cout << "5. Excluir" << endl; cout << "0. Sair" << endl; cout << endl; 
 		cin >> op;
 		
@@ -85,7 +91,7 @@ int main() {s
 				 view(productList);
 				break;
 			case 3: 
-				search();
+				search(productList);
 				break;
 			/*case 4: 
 				//edit();
