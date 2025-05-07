@@ -120,7 +120,11 @@ data(){
 
 
 int main() {
+	
+	//ao invez de "setlocale (LC_ALL "Portugues")" 
+	//eu uso este comando por usar uma versão diferente do DevC++
     SetConsoleOutputCP(CP_UTF8);
+	//setlocale(LC_ALL, "Portuguese");
 
 	int menu;
 	int pass[3] = {0, 0, 0};
