@@ -85,7 +85,7 @@ int password(const int pass[], int open){
 				printf("\nType the number you want to input:\n");
 				scanf("%d", &num);
 				
-				if ((side == 'r' || side == 'r') && (num == pass[2])){				
+				if ((side == 'r' || side == 'R') && (num == pass[2])){				
 					system("cls");
 					printf("Cofre aberto!");
 					printf("Safe Open!");
@@ -219,6 +219,7 @@ int main() {
 				system("cls");
 				printf("\nObrigado por testar meu programa!");
 				printf("\nThank you for testing my program!\n\n");
+				sleep(5);
 				exit = 1;
 				break;
 			
