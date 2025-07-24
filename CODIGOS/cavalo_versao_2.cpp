@@ -8,26 +8,42 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
-float calculo (float z) {
-const float x = 2;
-const float y = 2;
+//Define as constantes do programa
+#define Vbase 2		//Velocidade real do cavalo base
+#define Vjade 2		//Velocidade apresentada no Jade do cavalo base
+#define Jbase 2		//Pulo real do cavalo base
+#define Jjade 2		//Pulo apresentado no Jade do cavalo base
 
-	float res;
-
-	res = (z*y)/x;
-
-	      return res;
-
-}
+#define numRacas 35		// Define o numero de raças possiveis (para serem apresentadas na tela)
+						// numero deve ser igual ao da tabela para não apresentar informações erradas
+						// editar informações na própria tabela
 
 
+
+//float calculo (float z, int calc) {
+//	float res;
+//
+//	if(calc == 1){	
+//		res = (z*Vbase)/Vjade;
+//	}else if(calc == 2){
+//		res = (z*Jbase)/Jjade;
+//	}else{
+//		cout << "Erro interno"
+//	}
+//	
+//	
+//	      return res;
+//
+//}
+	
 
 int main() {
 	SetConsoleOutputCP(CP_UTF8);
-	int Health, Color, choice, exit;
+	int Health, Color, choice, exit, calc;
 	float Jump, Speed, Fjump, Fspeed;
 	string Name, Armor;
 
@@ -76,7 +92,9 @@ int main() {
 
 
 	//	print the command on the console so the user can copy it
+	cout << "----------------------------------" << endl;
 	cout << "\n\n\n/minecraft:summon horse ~ ~1 ~ {Health:" << Health <<"f,Temper:100,Variant:" << Color << "0,CustomName:'\"" << Name << "\"',ArmorItems:[{},{},{id:\"" << Armor << "\",count:1},{}],attributes:[{id:\"minecraft:jump_strength\",base:" << Fjump << ",{id:\"minecraft:max_health\",base:" << Health << "},{id:\"minecraft:movement_speed\",base:" << Fspeed <<"}],SaddleItem:{id:\"minecraft:saddle\",count:1b}}\n\n\n" << endl;
+	cout << "----------------------------------" << endl;
 
 	return 0;
 }
