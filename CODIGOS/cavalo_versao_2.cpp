@@ -13,38 +13,183 @@
 using namespace std;
 
 //Define as constantes do programa
-#define Vbase 2		//Velocidade real do cavalo base
-#define Vjade 2		//Velocidade apresentada no Jade do cavalo base
-#define Jbase 2		//Pulo real do cavalo base
-#define Jjade 2		//Pulo apresentado no Jade do cavalo base
+//Velocidade real do cavalo base
+#define Vbase 2	
 
-#define numRacas 35		// Define o numero de raças possiveis (para serem apresentadas na tela)
-						// numero deve ser igual ao da tabela para não apresentar informações erradas
-						// editar informações na própria tabela
+//Velocidade apresentada no Jade do cavalo base
+#define Vjade 20
+
+//Pulo real do cavalo base
+#define Jbase 1
+
+//Pulo apresentado no Jade do cavalo base
+#define Jjade 20
 
 
+float calculo (float z, int calc) {
+	float res;
 
-//float calculo (float z, int calc) {
-//	float res;
-//
-//	if(calc == 1){	
-//		res = (z*Vbase)/Vjade;
-//	}else if(calc == 2){
-//		res = (z*Jbase)/Jjade;
-//	}else{
-//		cout << "Erro interno"
-//	}
-//	
-//	
-//	      return res;
-//
-//}
+	if(calc == 1){	
+		res = (z*Vbase)/Vjade;
+	}else if(calc == 2){
+		res = (z*Jbase)/Jjade;
+	}else{
+		cout << "Erro interno";
+	}
+	
+	
+	      return res;
+
+}
+
+int escolherCavalo(){
+
+	int i, cor, escolha;
+	int fim = 0;	
+	
+	
+	do{
+		
+		system("cls");	
+		cout << "Agora vamos escolher a Cor do seu cavalo!\nTemos algumas opções:\n";
+			
+		//Criação dos Vetores com nomes e ID das raças de Cavalo
+		vector<string> racas;
+		vector<int> racasID;
+		
+		//Inserindo dados na tabela, sempre 1 nome e 1 id em sequencia (Nome i equivale a ID i)	
+		racas.push_back("Branco");
+		racasID.push_back(0);
+		
+		racas.push_back("Branco/Branco");		
+		racasID.push_back(256);	
+			
+		racas.push_back("Branco/Campos Brancos");		
+		racasID.push_back(512);
+		
+		racas.push_back("Branco/Manchas Brancas");		
+		racasID.push_back(768);
+		
+		racas.push_back("Branco/Manchas Pretas");		
+		racasID.push_back(1024);
+		
+		racas.push_back("Creme");	
+		racasID.push_back(1);	
+		
+		racas.push_back("Creme/Branco");		
+		racasID.push_back(257);
+		
+		racas.push_back("Creme/Campos Brancos");		
+		racasID.push_back(513);		
+		
+		racas.push_back("Creme/Manchas Brancas");		
+		racasID.push_back(769);
+				
+		racas.push_back("Creme/Manchas Pretas");		
+		racasID.push_back(1025);		
+		
+		racas.push_back("Castanho");		
+		racasID.push_back(2);		
+		
+		racas.push_back("Castanho/Branco");	
+		racasID.push_back(258);
+		
+		racas.push_back("Castanho/Campos Brancos");		
+		racasID.push_back(514);		
+		
+		racas.push_back("Castanho/Manchas Brancas");		
+		racasID.push_back(770);		
+		
+		racas.push_back("Castanho/Manchas Pretas");		
+		racasID.push_back(1026);		
+		
+		racas.push_back("Marrom");		
+		racasID.push_back(3);		
+		
+		racas.push_back("Marrom/Branco");		
+		racasID.push_back(259);		
+		
+		racas.push_back("Marrom/Campos Brancos");	
+		racasID.push_back(515);		
+		
+		racas.push_back("Marrom/Manchas Brancas");		
+		racasID.push_back(771);
+		
+		racas.push_back("Marrom/Manchas Pretas");		
+		racasID.push_back(1027);		
+		
+		racas.push_back("Preto");		
+		racasID.push_back(4);		
+		
+		racas.push_back("Preto/Branco");		
+		racasID.push_back(260);		
+		
+		racas.push_back("Preto/Campos Brancos");		
+		racasID.push_back(516);		
+		
+		racas.push_back("Preto/Manchas Brancas");		
+		racasID.push_back(772);		
+		
+		racas.push_back("Preto/Manchas Pretas");		
+		racasID.push_back(1028);		
+		
+		racas.push_back("Cinza");		
+		racasID.push_back(5);		
+		
+		racas.push_back("Cinza/Branco");		
+		racasID.push_back(261);		
+		
+		racas.push_back("Cinza/Campos Brancos");		
+		racasID.push_back(517);		
+		
+		racas.push_back("Cinza/Manchas Brancas");	
+		racasID.push_back(773);		
+		
+		racas.push_back("Cinza/Manchas Pretas");		
+		racasID.push_back(1029);		
+		
+		racas.push_back("Marrom Escuro");
+		racasID.push_back(6);		
+		
+		racas.push_back("Marrom Escuro/Branco");		
+		racasID.push_back(262);		
+		
+		racas.push_back("Marrom Escuro/Campos Brancos");		
+		racasID.push_back(518);		
+		
+		racas.push_back("Marrom Escuro/Manchas Brancas");		
+		racasID.push_back(774);	
+		
+		racas.push_back("Marrom Escuro/Manchas Pretas");		
+		racasID.push_back(1030);
+		
+		for (i = 0; i < racas.size(); i++){
+			cout << "[" << i+1 << "] " << racas[i] << endl;
+		}
+	
+		cout << "\nQual a cor desejada? "; cin >> escolha;
+		
+		
+		
+		 if (escolha > 0 && escolha < (racas.size() +1) ) {
+			cor=racasID[escolha-1];
+			fim = 1;
+			cout << "\n\nA cor escolhida foi: " << racas[escolha-1] << endl;
+		} else {
+	        cout << "\nOpcao invalida!" << endl;
+	        sleep(3);
+	    }
+	}while (fim != 1);
+
+    return cor;
+}
+
 	
 
 int main() {
 	SetConsoleOutputCP(CP_UTF8);
 	int Health, Color, choice, exit, calc;
-	float Jump, Speed, Fjump, Fspeed;
+	float Jump, Speed, Fjump, Fspeed, healthMax;
 	string Name, Armor;
 
 	cout << "Bem vindo ao programa de conversão e summon de cavalos.\nNo Minecraft cavalos tem statisticas em relação a sua velocidade, vida, cor, força de pulo e etc. no servidor em que eu jogo existe um plugin em que esses detalhes são apresentados, mas eles não coincidem com o que o minecraft aceita, por este motivo criei este programa para converter estes valores e criar um comando para sumonar o cavalo" << endl;
@@ -59,22 +204,27 @@ int main() {
 		cin >> choice;
 		switch (choice) {
 	        case 1: 
+	        	cout << "Armadura escolhida: Nenhuma";
 	        	Armor = "";
 	        	exit = 1;
 	        	break;
 	        case 2: 
+	        	cout << "Armadura escolhida: Armadura de Couro";
 	        	Armor = "minecraft:leather_horse_armor";
 	        	exit = 1;
 				break;
 	        case 3: 
+	        	cout << "Armadura escolhida: Armadura de Ferro";
 	        	Armor = "minecraft:iron_horse_armor";
 	        	exit = 1;
 				break;
 	        case 4: 
+	        	cout << "Armadura escolhida: Armadura de Ouro";
 	        	Armor = "minecraft:golden_horse_armor";
 	        	exit = 1;
 				break;
 	        case 5: 
+	        	cout << "Armadura escolhida: Armadura de Diamantes";
 	        	Armor = "minecraft:diamond_horse_armor";
 	        	exit = 1;
 	        	break;
@@ -82,18 +232,38 @@ int main() {
 	        	cout << "Opção Invalida, tente novamente!" << endl;
 	        	exit = 0;
 				sleep(3);
-	        	
 			break;	
 		}
 
 	} while (exit != 1);
 	
+	sleep(3);
 	
-
-
+	Color = escolherCavalo();
+	
+	sleep(3);
+	
+	system("cls");
+	cout << "Decididas as caracteristicas estéticas, vamos para as caracteristicas Fisicas." << endl;
+	cout << "Vamos começar com a Vida, Digite a VIDA MAXIMA (numero de corações * 2) do seu cavalo: "; cin >> Health;
+	healthMax = (Health/2.0);
+	
+	cout << "\nPerfeito, seu cavalo terá " << Health << " de vida (equivalente a " << healthMax << " corações)." << endl;
+	sleep(3);
+	system("cls");
+	
+	cout << "Agora decida a Velocidade do seu Cavalo. Olhe para o cavalo com o mod Jade instalado e escreva o valor \"Speed\": "; cin >> Speed;
+	Fspeed = calculo(Speed,1);
+	cout << "Ok, a velocidade " << Speed << " do seu cavalo equivale a " << Fspeed << endl;
+	
+	cout << "Agora decida a Força de Pulo do seu Cavalo. Olhe para o cavalo com o mod Jade instalado e escreva o valor \"Jump Strenght\": "; cin >> Jump;
+	Fjump = calculo(Jump,2);
+	cout << "Ok, a força de Pulo " << Jump << " do seu cavalo equivale a " << Fjump << endl;
+	
+ 
 	//	print the command on the console so the user can copy it
 	cout << "----------------------------------" << endl;
-	cout << "\n\n\n/minecraft:summon horse ~ ~1 ~ {Health:" << Health <<"f,Temper:100,Variant:" << Color << "0,CustomName:'\"" << Name << "\"',ArmorItems:[{},{},{id:\"" << Armor << "\",count:1},{}],attributes:[{id:\"minecraft:jump_strength\",base:" << Fjump << ",{id:\"minecraft:max_health\",base:" << Health << "},{id:\"minecraft:movement_speed\",base:" << Fspeed <<"}],SaddleItem:{id:\"minecraft:saddle\",count:1b}}\n\n\n" << endl;
+	cout << "\n\n\n/minecraft:summon horse ~ ~1 ~ {Health:" << Health <<"f,Temper:100,Variant:" << Color << ",CustomName:'\"" << Name << "\"',ArmorItems:[{},{},{id:\"" << Armor << "\",count:1},{}],attributes:[{id:\"minecraft:jump_strength\",base:" << Fjump << ",{id:\"minecraft:max_health\",base:" << Health << "},{id:\"minecraft:movement_speed\",base:" << Fspeed <<"}],SaddleItem:{id:\"minecraft:saddle\",count:1b}}\n\n\n" << endl;
 	cout << "----------------------------------" << endl;
 
 	return 0;
