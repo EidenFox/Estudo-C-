@@ -16,7 +16,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 
 	short int x = 32770;
-	printf("Valor de X: %d\n", &x);
+	printf("Valor de X: %d\n", x);
 
 
     return 0;
