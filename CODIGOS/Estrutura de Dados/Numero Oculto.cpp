@@ -63,13 +63,13 @@ int main() {
 			
 			//Calcula a distancia entre o palpite e a resposta
 			dist = res - sec;
-			printf ("\ndistance: %d\n", dist);
+			//printf ("\ndistance: %d\n", dist);
 			
 			//se a distancia for negativa pega o valor absoluto da distância
 			// (ex: palpite = 5; resposta = 20;	distancia = -15; distancia absoluta = 15 )
 			if (dist < 0){
 				dist = dist * -1;
-				printf("Absolute distance: %d \n\n", dist);
+				//printf("Absolute distance: %d \n\n", dist);
 			}
 			
 			//Mais facil: "abs();" (Absolute), apenas o numero positivo. ex: abs(-15); = 15			
