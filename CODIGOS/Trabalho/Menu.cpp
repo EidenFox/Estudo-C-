@@ -106,10 +106,11 @@ int main() {
 				break;
 			case 0:
 				cout << "Saindo";
-				for (int i = 0; i > 5; i++){
+				for (int i = 0; i < 5; i++){
 					sleep(500);
 					cout << "." << endl;
 				}
+				break;
 		}
 		
 	}while (op != 0);
