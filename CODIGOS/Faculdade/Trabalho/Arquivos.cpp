@@ -9,22 +9,26 @@
 
 #define ARQUIVO ".\\arquivos\\dados.txt"
 #define LIMITE 100
-#define TAMNOME
+#define TAMNOME 50
 
 FILE *pont_arq;
 
 using namespace std;
 
+/* Prototipação das funções */
+void cadastrar(Pessoa Cadastro[]);
+bool coletarDados(Pessoa Cadastro[]);
+bool abrirArquivo(bool tipo);
+/* Prototipação das funções */
+
+/* STRUCTS */
 typedef struct Pessoa {
     int id;
     char nome[TAMNOME];
     int idade;
     string email;
 } Pessoa;
-
-void cadastrar(Pessoa Cadastro[]);
-bool coletarDados(Pessoa Cadastro[]);
-bool abrirArquivo(bool tipo);
+/* STRUCTS */
 
 
 int main() {
@@ -44,7 +48,42 @@ int main() {
 
 
 
+
 /* FUNÇÃO PARA COLETAR OS DADOS DO ARQUIVO */
+bool coletarDados(Pessoa Cadastro[]) {
+    if (!abrirArquivo(false)) {
+        return false;
+    }
+
+    pont_arq = fopen(ARQUIVO, "r");		//Abre o arquivo
+    if (pont_arq == NULL) return false;
+
+    char linha[256]
+    int i = 0;
+
+    while (fgets(linha, sizeof(linha), pont_arq) && i < LIMITE) {
+      
+        linha[strcspn(linha, "\n")] = '\0';   // Remove \n do final da linha
+
+        char *token = strtok(linha, "|");
+        if (token != NULL) Cadastro[i].id = atoi(token);
+
+        token = strtok(NULL, "|");
+        if (token != NULL) strncpy(Cadastro[i].nome, token, TAMNOME);
+
+        token = strtok(NULL, "|");
+        if (token != NULL) Cadastro[i].idade = atoi(token);
+
+        token = strtok(NULL, "|");
+        if (token != NULL) Cadastro[i].email = token;
+
+        i++;
+    }
+
+    fclose(pont_arq);
+    return true;
+}
+
 bool coletarDados(Pessoa Cadastro[]){
 	if(abrirArquivo(false)){
 		
@@ -55,7 +94,7 @@ bool coletarDados(Pessoa Cadastro[]){
             	char campo[TAMNOME];
             	for (int i = 0; i < 100; i++){
             		do{
-            			//implementar a lógica que faz funcionar pq agr nn ta funcionando nn
+            			//implementar a lógica que faz funcionar pq agr nn ta funcionando nn!
 					}while (campo == '|')
 				}	
 			}
