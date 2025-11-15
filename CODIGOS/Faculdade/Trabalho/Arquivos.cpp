@@ -7,19 +7,19 @@
 #include <iostream>
 #include <string>
 
+/* CONSTANTES E VARIAVEIS GLOBAIS */
 #define ARQUIVO ".\\arquivos\\dados.txt"
 #define LIMITE 100
 #define TAMNOME 50
+
+int total = 0;
+
+/* CONSTANTES E VARIAVEIS GLOBAIS */
 
 FILE *pont_arq;
 
 using namespace std;
 
-/* Prototipação das funções */
-void cadastrar(Pessoa Cadastro[]);
-bool coletarDados(Pessoa Cadastro[]);
-bool abrirArquivo(bool tipo);
-/* Prototipação das funções */
 
 /* STRUCTS */
 typedef struct Pessoa {
@@ -30,18 +30,33 @@ typedef struct Pessoa {
 } Pessoa;
 /* STRUCTS */
 
+/* Prototipação das funções */
+void cadastrar(Pessoa Cadastro[]);
+bool coletarDados(Pessoa Cadastro[]);
+bool abrirArquivo(bool tipo);
+/* Prototipação das funções */
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
 
     Pessoa Cadastro[LIMITE];
     int i;
-    
+		
+		
+	cout << "cadastro 1:" << Cadastro[1].nome << endl;    
     if(coletarDados(Cadastro)){
-    	cadastrar(Cadastro);
-	}else cout << "Erro critico na leitura do arquivo, programa encerrado!" << endl;
-	
+    	cadastrar(Cadastro)
+;	}else cout << "Erro critico na leitura do arquivo, programa encerrado!" << endl;
     fclose(pont_arq);
+    
+    
+    cout << "cadastro 1:" << Cadastro[1].nome << endl; 
+	
+    
+    
+    
+    
+    
 
     return 0;
 }
@@ -54,11 +69,9 @@ bool coletarDados(Pessoa Cadastro[]) {
     if (!abrirArquivo(false)) {
         return false;
     }
-
-    pont_arq = fopen(ARQUIVO, "r");		//Abre o arquivo
     if (pont_arq == NULL) return false;
 
-    char linha[256]
+    char linha[256];
     int i = 0;
 
     while (fgets(linha, sizeof(linha), pont_arq) && i < LIMITE) {
@@ -78,37 +91,13 @@ bool coletarDados(Pessoa Cadastro[]) {
         if (token != NULL) Cadastro[i].email = token;
 
         i++;
+        total++;
     }
 
     fclose(pont_arq);
     return true;
 }
 
-bool coletarDados(Pessoa Cadastro[]){
-	if(abrirArquivo(false)){
-		
-		while (fgets (frase, 100, pont_arq)){ // enquanto não chegar ao fim do arquivo
-            if (ferror(pont_arq)){	// verifica se houve erros na leitura
-                printf ("Erro na leitura!");
-            }else{
-            	char campo[TAMNOME];
-            	for (int i = 0; i < 100; i++){
-            		do{
-            			//implementar a lógica que faz funcionar pq agr nn ta funcionando nn!
-					}while (campo == '|')
-				}	
-			}
-                
-        }
-
-
-
-	}else{
-		fclose(pont_arq);
-		return false;
-	}
-	fclose(pont_arq);
-}
 
 /* FIM DA FUNÇÃO DE COLETA*/
 
@@ -118,38 +107,38 @@ bool coletarDados(Pessoa Cadastro[]){
 void cadastrar(Pessoa Cadastro[]) {
     bool sair = false;
     char sairC;
-    int i = 0;
 	bool ok = false;
 
 	if(abrirArquivo(true)){
+		if (pont_arq != NULL) fprintf(pont_arq, "\n");
 	    do {
-	        Cadastro[i].id = i + 1;
-	        fprintf(pont_arq, "%d|", Cadastro[i].id);
+	        Cadastro[total].id = total + 1;
+	        fprintf(pont_arq, "%d|", Cadastro[total].id);
 	
 	//		do{
 				
 	        cout << "Digite o nome: ";
 			fflush(stdin);
-	        cin.getline(Cadastro[i].nome, 50);
-	        fprintf(pont_arq, "%s|", Cadastro[i].nome);
+	        cin.getline(Cadastro[total].nome, 50);
+	        fprintf(pont_arq, "%s|", Cadastro[total].nome);
 	//		}while (!ok);
 	
 	        cout << "Digite a idade: ";
-			scanf("%d", &Cadastro[i].idade);
-			fprintf(pont_arq, "%d|", Cadastro[i].idade);
+			scanf("%d", &Cadastro[total].idade);
+			fprintf(pont_arq, "%d|", Cadastro[total].idade);
 	
 	        cout << "Digite o email: ";
 	        fflush(stdin);
-	        getline(cin, Cadastro[i].email);
-	        fprintf(pont_arq, "%s\n", Cadastro[i].email.c_str());
+	        getline(cin, Cadastro[total].email);
+	        fprintf(pont_arq, "%s\n", Cadastro[total].email.c_str());
 	
 	        cout << "Realizar novo cadastro? [S/N]: ";
 	        fflush(stdin);
 	        cin >> sairC;
 	        sair = (tolower(sairC) != 's');
 	
-	        i++;
-	        if (i >= LIMITE) {
+	        total++;
+	        if (total >= LIMITE) {
 	            cout << "Limite de cadastros atingido." << endl;
 	            sair = true;
 	        }
@@ -175,7 +164,6 @@ bool abrirArquivo(bool tipo){
 	    return false;
     } else {
         cout << "Arquivo aberto com sucesso!" << endl;
-		fclose(pont_arq);
 		return true;
 	}
 }
