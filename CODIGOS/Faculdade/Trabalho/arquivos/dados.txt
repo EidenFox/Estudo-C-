@@ -1,7 +1,0 @@
-1|Daniel|15|daniel@daniel
-2|pedro|45|pedro@pedro
-3|robson|66|robson@robson
-4|Daniel aaaaaa|19|danielaaa@aaaaa.com
-5|teste|198|eleevelho@gmail.com
-6|Teste pra ver se vai|33|eiden@eiden.com
-7|bbbbbbb|0|bbbbbbbbbbbb

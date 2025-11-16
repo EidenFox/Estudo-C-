@@ -1,0 +1,21 @@
+0|adm|0|adm|0|adm
+1|daniel|15|daniel@daniel|0|senha123
+2|pedro|45|pedro@pedro|1|senha456
+3|robson|66|robson@robson|2|senha789
+4|ana|28|ana@ana|2|ana123
+5|beatriz|32|beatriz@beatriz|1|beatriz456
+6|carlos|19|carlos@carlos|2|carlitos99
+7|fernanda|51|fernanda@fernanda|2|fefe2025
+8|lucas|25|lucas@lucas|0|lucasADM
+9|maria|40|maria@maria|2|mariaPass
+10|tiago|29|tiago@tiago|1|tiagoWork
+11|julia|22|juliana@juliana|2|jujuba22
+12|marcos|37|marcos@marcos|2|m@rcosP
+13|sandra|48|sandra@sandra|1|sandrinhaRH
+14|bruno|21|bruno@bruno|2|bruno123
+15|Teste Final|99|teste@final.com|1|teste123
+16|Teste Final 2|88|teste@final.2|1|teste456
+17|Teste Cliente|77|teste@cliente.com|2|456785
+18|Teste Cliente 2|66|teste@cliente.2|2|783254677
+19|asdasdasdasdasd|5|asdasd|1|156
+20|asdasdasd|6|asdas|1|1561
