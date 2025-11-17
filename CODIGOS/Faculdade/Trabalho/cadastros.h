@@ -1,5 +1,5 @@
-#ifndef CLIENTES_H
-#define CLIENTES_H
+#ifndef CADASTROS_H
+#define CADASTROS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,7 +56,7 @@ using namespace std;
 extern int total;
 extern FILE *pont_arq;
 
-#define ARQUIVO "./arquivos/dadosClientes.txt"
+#define CADASTRO "./arquivos/dadosCadastros.txt"
 #define LIMITE 100
 #define TAMNOME 50
 
@@ -82,4 +82,4 @@ int checarLogin(Pessoa Cadastro[], string email, string senha);
 
 
 
-#endif // CLIENTES_H
+#endif

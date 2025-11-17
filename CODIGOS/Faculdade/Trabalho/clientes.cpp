@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-#include "clientes.h"
+#include "cadastros.h"
 
 /* CONSTANTES E VARIAVEIS GLOBAIS */
 FILE *pont_arq;
@@ -119,10 +119,10 @@ void cadastrar(Pessoa Cadastro[], int cargo) {
 /* FUNÇÃO PARA ABRIR O ARQUIVO */
 bool abrirArquivo(bool tipo){
 	if(tipo){//		tipo verdadeiro = escrever
-		pont_arq = fopen(ARQUIVO, "a");
+		pont_arq = fopen(CADASTRO, "a");
 		
 	}else{//		tipo falso = ler
-		pont_arq = fopen(ARQUIVO, "r");
+		pont_arq = fopen(CADASTRO, "r");
 	}
 
     if (pont_arq == NULL) {
