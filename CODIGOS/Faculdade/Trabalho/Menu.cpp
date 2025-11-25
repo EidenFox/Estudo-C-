@@ -19,9 +19,9 @@ void listarBicicletas(int x);	// transferir para outro arquivo
 void solicitarReparo();			// transferir para outro arquivo
 void devolucao();				// transferir para outro arquivo
 void alugar();					// transferir para outro arquivo
-void menuCadastro();
-void menuServico();
-void menuListar();
+void menuCadastro(Pessoa Cadastro[]);
+void menuServico(Pessoa Cadastro[]);
+void menuListar(Pessoa Cadastro[]);
 
 int main() {
 	setlocale(LC_ALL, "Portuguese");
@@ -117,17 +117,17 @@ int main() {
 		
 		switch(op){
 			case 1:
-				menuCadastro();
+				menuCadastro(Cadastro);
 				break;
 			case 2:
-				menuServico();
+				menuServico(Cadastro);
 				break;
 			case 0:
 				limparTela();
 				cout << "Encerrando programa";
 				for (int i = 0; i < 5; i++){
 					timer(1);
-					cout << "." << endl;
+					cout << ".";
 				}
 				break;
 			default:
@@ -147,15 +147,16 @@ int main() {
 
 
 
-void menuCadastro(){
+void menuCadastro(Pessoa Cadastro[]){
 	int op = 0;
+	int id = -1;
 	do{
 		limparTela();
 		cout << "--------------------\n--------MENU--------\n--------------------\n" << endl;
 		cout << "[1] Cadastrar Cliente" << endl;
-		cout << "[2] Editar Cadastro de Cliente" << entl;
+		cout << "[2] Editar Cadastro de Usuário" << endl;
 		cout << "[3] Cadatrar Bicicletas" << endl;
-		cout << "[4] Editar Cadastro de Bicicleta" << entl;
+		cout << "[4] Editar Cadastro de Bicicleta" << endl;
 		cout << "[0] Voltar" << endl;
 		cin >> op;
 		
@@ -164,7 +165,10 @@ void menuCadastro(){
 				cadastrar(Cadastro, 2);
 				break;
 			case 2:
-//				editarCliente();
+				//inserir "listarUsuarios(9)" para poder ver o ID do usuário
+				cout << "digite o ID do usuário que deseja editar: " << endl;
+				cin >> id;
+				editarUsuario(Cadastro, id);
 				break;
 			case 3:
 //				cadastrarBicicleta();
@@ -188,15 +192,17 @@ void menuCadastro(){
 }
 
 
-void menuListar(){
-		int op = 0;
+void menuListar(Pessoa Cadastro[]){
+	int op = 0;
 	do{
+		int lop = 0;
+		int id = 0;
 		limparTela();
 		cout << "--------------------\n-------LISTAR-------\n--------------------\n" << endl;
 		cout << "[1] Listar TODOS os Usuários" << endl;
-		cout << "[2] Listar Usuários por Cargo"
+		cout << "[2] Listar Usuários por Cargo" << endl;
 		cout << "[3] Listar TODAS as Bicicletas" << endl;
-		coud << "[4] Listar Bicicletas Disponiveis" << endl;
+		cout << "[4] Listar Bicicletas Disponiveis" << endl;
 		cout << "[5] Listar Bicicletas Alugadas" << endl;
 		cout << "[6] Listar Bicicletas por Cliente" << endl;
 		cout << "[0] Voltar para o Menu Principal" << endl;
@@ -204,11 +210,9 @@ void menuListar(){
 		
 		switch(op){
 			case 1:
-				listarUsuarios(9);
+				// listarUsuarios(9);
 				break;
-			case 2:
-				int lop = 0;
-				
+			case 2:				
 				do{
 					lop = -1;
 					cout << "Selecione uma opção: " << endl;
@@ -219,15 +223,15 @@ void menuListar(){
 					cin >> lop;
 					switch(lop){
 						case 1:
-							listarUsuarios(0);
+							// listarUsuarios(0);
 							lop = 0;
 							break;
 						case 2:
-							listarUsuarios(1);
+							// listarUsuarios(1);
 							lop = 0;
 							break;
 						case 3:
-							listarUsuarios(2);
+							// listarUsuarios(2);
 							lop = 0;
 							break;
 						case 0:
@@ -239,22 +243,22 @@ void menuListar(){
 							timer(3);
 							break;
 					}
-				}while (lop != 0)
+				}while (lop != 0);
 
 				break;
 			case 3:	
-				listarBicicletas(1);
+				// listarBicicletas(1);
 				break;
 			case 4:
-				listarBicicletas(1);
+				// listarBicicletas(1);
 				break;
 			case 5:
-				listarBicicletas(1);
+				// listarBicicletas(1);
+				break;
 			case 6:
 				cout << "Digite o ID do usuário que deseja checar: "<< endl;
-				int id;
 				cin >> id;
-				listarBicicletasID(id);
+				// listarBicicletasID(id);
 				break;
 			case 0:
 				limparTela();
@@ -273,9 +277,10 @@ void menuListar(){
 	}while (op != 0);
 }
 
-void menuServico(){
+void menuServico(Pessoa Cadastro[]){
 	int op = 0;
 	do{
+		int id = 0;
 		limparTela();
 		cout << "--------------------\n--------MENU--------\n--------------------\n" << endl;
 		cout << "[2] Alugar Bicicleta" << endl;
@@ -287,19 +292,19 @@ void menuServico(){
 		
 		switch(op){
 			case 1:
-				int id;
 				cout << "Digite o ID da bicicleta que deseja alugar:" << endl;
 				cin >> id;
-				alugarBicicleta(id);
+				// alugarBicicleta(id);
 				break;
 			case 2:
-				listarBicicletas(1);
+				// listarBicicletas(1);
 				break;
 			case 3:
 
 				break;
 			case 4:
 
+				break;
 			case 5:
 
 				break;

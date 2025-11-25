@@ -41,7 +41,7 @@
 		inline string toLower(const string& str) {
 			string lower = str;
 			transform(lower.begin(), lower.end(), lower.begin(),
-						   [](unsigned char c){ return tolower(c); });
+						[](unsigned char c){ return tolower(c); });
 			return lower;
 		}
 
@@ -74,8 +74,10 @@ typedef struct Pessoa {
 /* Prototipação das funções */
 void cadastrar(Pessoa Cadastro[], int cargo);
 bool coletarDados(Pessoa Cadastro[]);
-bool abrirArquivo(bool tipo);
+bool abrirArquivo(int tipo);
 int checarLogin(Pessoa Cadastro[], string email, string senha);
+bool editarUsuario(Pessoa Cadastro[], int id);
+bool reescreverArquivo(Pessoa Cadastro[]);
 /* Prototipação das funções */
 
 
