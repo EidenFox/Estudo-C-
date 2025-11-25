@@ -38,10 +38,10 @@
 		}
 
 		/* Função para transformar string de maiusculo para minusculo*/
-		inline string toLower(const string& str) {
-			string lower = str;
-			transform(lower.begin(), lower.end(), lower.begin(),
-						[](unsigned char c){ return tolower(c); });
+		inline std::string toLower(const std::string& str) {
+			std::string lower = str;
+			std::transform(lower.begin(), lower.end(), lower.begin(),
+						[](unsigned char c){ return std::tolower(c); });
 			return lower;
 		}
 
@@ -49,14 +49,10 @@
 /* COMPATIBILIDADE LINUX/WINDOWS */
 
 
-
-
-using namespace std;
-
 extern int total;
 extern FILE *pont_arq;
 
-#define CADASTRO "./arquivos/dadosCadastros.txt"
+#define CADASTRO "../arquivos/dadosCadastros.txt"
 #define LIMITE 100
 #define TAMNOME 50
 
@@ -66,8 +62,8 @@ typedef struct Pessoa {
     char nome[TAMNOME];
     int idade;
     int cargo;
-    string email;
-	string senha;
+    std::string email;
+	std::string senha;
 } Pessoa;
 /* STRUCTS */
 
@@ -75,7 +71,7 @@ typedef struct Pessoa {
 void cadastrar(Pessoa Cadastro[], int cargo);
 bool coletarDados(Pessoa Cadastro[]);
 bool abrirArquivo(int tipo);
-int checarLogin(Pessoa Cadastro[], string email, string senha);
+int checarLogin(Pessoa Cadastro[], std::string email, std::string senha);
 bool editarUsuario(Pessoa Cadastro[], int id);
 bool reescreverArquivo(Pessoa Cadastro[]);
 /* Prototipação das funções */

@@ -3,9 +3,9 @@
 #include <string.h>
 #include <iostream>
 #include <string>
+#include "cadastros.h"
 using namespace std;
 
-#include "cadastros.h"
 
 /* CONSTANTES E VARIAVEIS GLOBAIS */
 FILE *pont_arq;

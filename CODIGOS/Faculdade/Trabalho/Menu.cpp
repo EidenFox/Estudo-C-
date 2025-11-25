@@ -1,8 +1,7 @@
 #include <iostream>
 #include <locale.h>
-using namespace std;
-
 #include "cadastros.h"
+using namespace std;
 
 
 /**
