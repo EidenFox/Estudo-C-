@@ -45,6 +45,15 @@
 			return lower;
 		}
 
+		inline void pausar() {
+			#ifdef _WIN32
+				system("pause"); 
+			#else
+				system("read -n 1 -s -r -p 'Pressione qualquer tecla para continuar...'");
+				std::cout << std::endl;
+			#endif
+		}
+
 	/* FUNÇÕES DE CONVERSÃO WINDOWS/LINUX */
 /* COMPATIBILIDADE LINUX/WINDOWS */
 
@@ -64,6 +73,7 @@ typedef struct Pessoa {
     int cargo;
     std::string email;
 	std::string senha;
+	bool status;
 } Pessoa;
 /* STRUCTS */
 
@@ -74,6 +84,8 @@ bool abrirArquivo(int tipo);
 int checarLogin(Pessoa Cadastro[], std::string email, std::string senha);
 bool editarUsuario(Pessoa Cadastro[], int id);
 bool reescreverArquivo(Pessoa Cadastro[]);
+void listarUsuariosS(Pessoa Cadastro[], int x);	// Listar usuários Simples (só ID e nome)
+void listarUsuarios(Pessoa Cadastro[], int x); // Listar usuários Cimpleto (todos os dados (menos senha né ;-;))
 /* Prototipação das funções */
 
 

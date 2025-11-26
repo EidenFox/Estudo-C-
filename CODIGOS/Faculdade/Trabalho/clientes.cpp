@@ -31,23 +31,29 @@ bool coletarDados(Pessoa Cadastro[]) {
         linha[strcspn(linha, "\n")] = '\0';   // Remove \n do final da linha
 
         char *token = strtok(linha, "|");
-        if (token != NULL) Cadastro[i].id = atoi(token);
+        if (token != NULL) Cadastro[i].id = atoi(token);	//ID
 
         token = strtok(NULL, "|");
-        if (token != NULL) strncpy(Cadastro[i].nome, token, TAMNOME);
+        if (token != NULL) strncpy(Cadastro[i].nome, token, TAMNOME);	//Nome
 
         token = strtok(NULL, "|");
-        if (token != NULL) Cadastro[i].idade = atoi(token);
+        if (token != NULL) Cadastro[i].idade = atoi(token);	//Idade
 
         token = strtok(NULL, "|");
-        if (token != NULL) Cadastro[i].email = token;
+        if (token != NULL) Cadastro[i].email = token;	//Email
 
 		token = strtok(NULL, "|");
-        if (token != NULL) Cadastro[i].cargo = atoi(token);
+        if (token != NULL) Cadastro[i].cargo = atoi(token);	//Cargo
 
 		token = strtok(NULL, "|");
-        if (token != NULL) Cadastro[i].senha = token;
-
+        if (token != NULL) Cadastro[i].senha = token;	//Senha
+		
+		token = strtok(NULL, "|");
+        if (token != NULL) {
+            Cadastro[i].status = (atoi(token) == 1); //Status
+        } else {
+            Cadastro[i].status = true;	//se nn tiver status considera "ativo" 
+        }
     	total = i; 
         i++;
     }
@@ -109,7 +115,10 @@ void cadastrar(Pessoa Cadastro[], int cargo) {
 
 			cout << "Peça para que o usuário digite uma Senha: ";
 	        getline(cin, Cadastro[total].senha);
-	        fprintf(pont_arq, "%s\n", Cadastro[total].senha.c_str());
+	        fprintf(pont_arq, "%s|", Cadastro[total].senha.c_str());
+
+			Cadastro[total].status = true; 
+	        fprintf(pont_arq, "%d\n", 1);
 			
 	
 	        total++;
@@ -158,7 +167,6 @@ int checarLogin(Pessoa Cadastro[], string email, string senha){
 		string lEmailCheck;
 	for (int i = 0; i <= total; i++){
 		lEmailCheck = toLower(Cadastro[i].email);
-
 		if(lEmail == lEmailCheck && senha == Cadastro[i].senha){
 			return i;
 		}
@@ -174,13 +182,14 @@ bool reescreverArquivo(Pessoa Cadastro[]) {
     
     for (int i = 0; i <= total; i++) {
 		if(Cadastro[i].nome[0] != '\0'){
-			fprintf(pont_arq, "%d|%s|%d|%s|%d|%s\n", 
+			fprintf(pont_arq, "%d|%s|%d|%s|%d|%s|%d\n", 
 				Cadastro[i].id, 
 				Cadastro[i].nome, 
 				Cadastro[i].idade, 
 				Cadastro[i].email.c_str(), 
 				Cadastro[i].cargo, 
-				Cadastro[i].senha.c_str()
+				Cadastro[i].senha.c_str(),
+				(Cadastro[i].status ? 1 : 0)	// true = 1 | false = 0
 			);
 		}
     }
@@ -214,7 +223,7 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
         return false;
     }
 
-
+	string status;
     int op = 0;
 	do{
 		limparTela();
@@ -223,12 +232,14 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
 		cout << "Idade: " << Cadastro[indice].idade << endl;
 		cout << "Email: " << Cadastro[indice].email << endl;
 		cout << "Cargo: " << Cadastro[indice].cargo << endl;
+		cout << "Status: "<< (Cadastro[indice].status ? "Ativo" : "Inativo") << endl;
 		cout << "-----------------------" << endl;
 		cout << "[1] Alterar Nome" << endl;
 		cout << "[2] Alterar Idade" << endl;
 		cout << "[3] Alterar Email" << endl;
 		cout << "[4] Alterar Senha" << endl;
 		cout << "[5] Alterar Cargo" << endl;
+		cout << "[6] Açternar Status" << endl;
 		cout << "[9] CANCELAR" << endl;
 		cout << "[0] SALVAR" << endl;
 		cin >> op;
@@ -255,6 +266,12 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
 			case 5:
 				cout << "Novo cargo:\n[0] Administrador\n[1] Funcionário\n[2] Cliente" << endl;
 				cin >> Cadastro[indice].cargo;
+				break;
+			case 6:
+				cout << "Status Alterado\nStatus Antigo: " << (Cadastro[indice].status ? "Ativo" : "Inativo") << endl;
+				Cadastro[indice].status = !Cadastro[indice].status;
+				cout << "Status Atual: " << (Cadastro[indice].status ? "Ativo" : "Inativo") << endl;
+				timer(3);
 				break;
 			case 9:
 				cout << "Edição Cancelada" << endl;
@@ -283,3 +300,27 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
 }
 /* FUNÇÃO PARA EDITAR UM USUÁRIO */
 
+
+/* FUNÇÃO PARA LISTAR USUÁRIOS SIMPLES*/
+void listarUsuariosS(Pessoa Cadastro[], int x){
+	char sair;
+	cout << "--------------------\n-------LISTAR-------\n--------------------\n" << endl;
+	for (int i = 0; i <= total; i++){
+		if (x == 9 && Cadastro[i].status){	// se for 9 lista TODOS os ativos
+			cout << "ID: " << Cadastro[i].id << endl;
+			cout << "Nome: " << Cadastro[i].nome << endl;
+			cout << "----------" << endl;
+		}else if (x == 10 && !Cadastro[i].status){	// se for 10 lista só os inativos
+			cout << "ID: " << Cadastro[i].id << endl;
+			cout << "Nome: " << Cadastro[i].nome << endl;
+			cout << "----------" << endl;		
+		}else if ((x == Cadastro[i].cargo) && Cadastro[i].status){	// se x for igual ao cargo, lista os ativos com este cargo
+			cout << "ID: " << Cadastro[i].id << endl;
+			cout << "Nome: " << Cadastro[i].nome << endl;
+			cout << "----------" << endl;
+		}
+		
+	}
+	pausar();
+}
+/* FUNÇÃO PARA LISTAR USUÁRIOS SIMPLES*/

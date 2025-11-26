@@ -12,8 +12,18 @@ using namespace std;
 *	2 = Cliente
 **/
 
+/**
+*	Ordem no arquivo TXT
+*	- ID
+*	- Nome
+*	- Idade
+*	- Email
+*	- Cargo
+*	- Senha
+*	- Status
+**/
 
-void listarUsuarios(int x); 	// transferir para outro arquivo
+
 void listarBicicletas(int x);	// transferir para outro arquivo
 void solicitarReparo();			// transferir para outro arquivo
 void devolucao();				// transferir para outro arquivo
@@ -56,10 +66,10 @@ int main() {
 	bool continuar = false;
 	int op = -1;
 	int indice = -1;
-	coletarDados(Cadastro);
+	bool funcionou = coletarDados(Cadastro);
 	limparTela();
 	
-	
+	cout << funcionou << endl;
 	
 	/* LOGIN INICIAL (ADM (0) OU FUNCIONÁRIO (1))*/
 	do{
@@ -74,7 +84,7 @@ int main() {
 			continuar = true;
 			timer(3);
 		}else{
-			limparTela();
+			//limparTela();
 			continuar = false;
 			cout << "Dados incorretos, tente novamente!" << endl;
 		}
@@ -156,6 +166,7 @@ void menuCadastro(Pessoa Cadastro[]){
 		cout << "[2] Editar Cadastro de Usuário" << endl;
 		cout << "[3] Cadatrar Bicicletas" << endl;
 		cout << "[4] Editar Cadastro de Bicicleta" << endl;
+		cout << "[5] Menu de Listagem" << endl;
 		cout << "[0] Voltar" << endl;
 		cin >> op;
 		
@@ -174,6 +185,9 @@ void menuCadastro(Pessoa Cadastro[]){
 				break;
 			case 4:
 //				editarBicicleta();
+				break;
+			case 5:
+				menuListar(Cadastro);
 				break;
 			case 0:
 				limparTela();
@@ -198,18 +212,19 @@ void menuListar(Pessoa Cadastro[]){
 		int id = 0;
 		limparTela();
 		cout << "--------------------\n-------LISTAR-------\n--------------------\n" << endl;
-		cout << "[1] Listar TODOS os Usuários" << endl;
+		cout << "[1] Listar TODOS os Usuários ATIVOS" << endl;
 		cout << "[2] Listar Usuários por Cargo" << endl;
-		cout << "[3] Listar TODAS as Bicicletas" << endl;
-		cout << "[4] Listar Bicicletas Disponiveis" << endl;
-		cout << "[5] Listar Bicicletas Alugadas" << endl;
-		cout << "[6] Listar Bicicletas por Cliente" << endl;
+		cout << "[3] Listar Usuários INATIVOS" << endl;
+		cout << "[4] Listar TODAS as Bicicletas" << endl;
+		cout << "[5] Listar Bicicletas Disponiveis" << endl;
+		cout << "[6] Listar Bicicletas Alugadas" << endl;
+		cout << "[7] Listar Bicicletas por Cliente" << endl;
 		cout << "[0] Voltar para o Menu Principal" << endl;
 		cin >> op;
 		
 		switch(op){
 			case 1:
-				// listarUsuarios(9);
+				listarUsuariosS(Cadastro, 9);
 				break;
 			case 2:				
 				do{
@@ -222,15 +237,15 @@ void menuListar(Pessoa Cadastro[]){
 					cin >> lop;
 					switch(lop){
 						case 1:
-							// listarUsuarios(0);
+							listarUsuariosS(Cadastro, 0);
 							lop = 0;
 							break;
 						case 2:
-							// listarUsuarios(1);
+							listarUsuariosS(Cadastro, 1);
 							lop = 0;
 							break;
 						case 3:
-							// listarUsuarios(2);
+							listarUsuariosS(Cadastro, 2);
 							lop = 0;
 							break;
 						case 0:
@@ -246,7 +261,7 @@ void menuListar(Pessoa Cadastro[]){
 
 				break;
 			case 3:	
-				// listarBicicletas(1);
+				listarUsuariosS(Cadastro, 10);
 				break;
 			case 4:
 				// listarBicicletas(1);
@@ -309,11 +324,7 @@ void menuServico(Pessoa Cadastro[]){
 				break;
 			case 0:
 				limparTela();
-				cout << "Saindo";
-				for (int i = 0; i < 5; i++){
-					timer(1);
-					cout << "." << endl;
-				}
+				cout << "Saindo..." << endl;
 				break;
 			default:
 				cout << "Opção Inválida, tente novamente" << endl;
