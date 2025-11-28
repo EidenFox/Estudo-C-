@@ -268,17 +268,16 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
 				cin >> Cadastro[indice].cargo;
 				break;
 			case 6:
-				cout << "Status Alterado\nStatus Antigo: " << (Cadastro[indice].status ? "Ativo" : "Inativo") << endl;
 				Cadastro[indice].status = !Cadastro[indice].status;
-				cout << "Status Atual: " << (Cadastro[indice].status ? "Ativo" : "Inativo") << endl;
-				timer(3);
-				break;
+                cout << "Status alterado." << endl;
+                timer(1);
+                break;
 			case 9:
 				cout << "Edição Cancelada" << endl;
 				timer(3);
 				return false;
 			case 0:
-				cout << "Saindo" << endl;
+				cout << "Salvando..." << endl;
 				timer(3);
 				break;
 			default:
@@ -301,26 +300,56 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
 /* FUNÇÃO PARA EDITAR UM USUÁRIO */
 
 
-/* FUNÇÃO PARA LISTAR USUÁRIOS SIMPLES*/
-void listarUsuariosS(Pessoa Cadastro[], int x){
+/* FUNÇÃO PARA LISTAR USUÁRIOS */
+void listarUsuario(Pessoa Cadastro[], int x, bool mode){
 	char sair;
 	cout << "--------------------\n-------LISTAR-------\n--------------------\n" << endl;
-	for (int i = 0; i <= total; i++){
-		if (x == 9 && Cadastro[i].status){	// se for 9 lista TODOS os ativos
-			cout << "ID: " << Cadastro[i].id << endl;
-			cout << "Nome: " << Cadastro[i].nome << endl;
-			cout << "----------" << endl;
-		}else if (x == 10 && !Cadastro[i].status){	// se for 10 lista só os inativos
-			cout << "ID: " << Cadastro[i].id << endl;
-			cout << "Nome: " << Cadastro[i].nome << endl;
-			cout << "----------" << endl;		
-		}else if ((x == Cadastro[i].cargo) && Cadastro[i].status){	// se x for igual ao cargo, lista os ativos com este cargo
-			cout << "ID: " << Cadastro[i].id << endl;
-			cout << "Nome: " << Cadastro[i].nome << endl;
-			cout << "----------" << endl;
+
+	if(!mode){
+		for (int i = 0; i <= total; i++){
+			if (x == 9 && Cadastro[i].status){	// se for 9 lista TODOS os ativos
+				cout << "ID: " << Cadastro[i].id << endl;
+				cout << "Nome: " << Cadastro[i].nome << endl;
+				cout << "----------" << endl;
+			}else if (x == 10 && !Cadastro[i].status){	// se for 10 lista só os inativos
+				cout << "ID: " << Cadastro[i].id << endl;
+				cout << "Nome: " << Cadastro[i].nome << endl;
+				cout << "----------" << endl;		
+			}else if ((x == Cadastro[i].cargo) && Cadastro[i].status){	// se x for igual ao cargo, lista os ativos com este cargo
+				cout << "ID: " << Cadastro[i].id << endl;
+				cout << "Nome: " << Cadastro[i].nome << endl;
+				cout << "----------" << endl;
+			}
+			
 		}
-		
+		pausar();
+	}else{
+		for (int i = 0; i <= total; i++){
+			if (x == 9 && Cadastro[i].status){	// se for 9 lista TODOS os ativos
+				cout << "ID: [" << Cadastro[i].id << "]" << endl;
+				cout << "Nome: " << Cadastro[i].nome << endl;
+				cout << "Email: " << Cadastro[i].email << endl;
+				cout << "Idade: " << Cadastro[i].idade << endl;
+				cout << "Cargo: "; switch(Cadastro[i].cargo){case 0: cout << "Administrador";  break; case 1: cout << "Funcionário"; break; case 2: cout << "Cliente"; break;} cout << endl;
+				cout << "----------" << endl;
+			}else if (x == 10 && !Cadastro[i].status){	// se for 10 lista só os inativos
+				cout << "ID: [" << Cadastro[i].id << "]" << endl;
+				cout << "Nome: " << Cadastro[i].nome << endl;
+				cout << "Email: " << Cadastro[i].email << endl;
+				cout << "Idade: " << Cadastro[i].idade << endl;
+				cout << "Cargo: "; switch(Cadastro[i].cargo){case 0: cout << "Administrador";  break; case 1: cout << "Funcionário"; break; case 2: cout << "Cliente"; break;} cout << endl;
+				cout << "----------" << endl;	
+			}else if ((x == Cadastro[i].cargo) && Cadastro[i].status){	// se x for igual ao cargo, lista os ativos com este cargo
+				cout << "ID: [" << Cadastro[i].id << "]" << endl;
+				cout << "Nome: " << Cadastro[i].nome << endl;
+				cout << "Email: " << Cadastro[i].email << endl;
+				cout << "Idade: " << Cadastro[i].idade << endl;
+				cout << "Cargo: "; switch(Cadastro[i].cargo){case 0: cout << "Administrador";  break; case 1: cout << "Funcionário"; break; case 2: cout << "Cliente"; break;} cout << endl;
+				cout << "----------" << endl;
+			}
+			
+		}
+		pausar();
 	}
-	pausar();
 }
-/* FUNÇÃO PARA LISTAR USUÁRIOS SIMPLES*/
+/* FUNÇÃO PARA LISTAR USUÁRIOS */

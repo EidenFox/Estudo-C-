@@ -59,11 +59,16 @@
 
 
 extern int total;
+extern int totalB;
 extern FILE *pont_arq;
+extern FILE *pont_arq2;
 
 #define CADASTRO "../arquivos/dadosCadastros.txt"
+#define BICICLETAS "../arquivos/bicicletas.txt"
 #define LIMITE 100
 #define TAMNOME 50
+#define TAMDESC 100
+
 
 /* STRUCTS */
 typedef struct Pessoa {
@@ -75,19 +80,35 @@ typedef struct Pessoa {
 	std::string senha;
 	bool status;
 } Pessoa;
+
+typedef struct Bicicletas {
+    int id;
+	std::string modelo;
+	int idPessoa;	//	FK, armazena o ID da pessoa que alugou
+    std::string descricao;
+	bool status;
+} Bicicletas;
 /* STRUCTS */
 
-/* Prototipação das funções */
+/* Prototipação das funções Clientes */
 void cadastrar(Pessoa Cadastro[], int cargo);
 bool coletarDados(Pessoa Cadastro[]);
 bool abrirArquivo(int tipo);
 int checarLogin(Pessoa Cadastro[], std::string email, std::string senha);
 bool editarUsuario(Pessoa Cadastro[], int id);
 bool reescreverArquivo(Pessoa Cadastro[]);
-void listarUsuariosS(Pessoa Cadastro[], int x);	// Listar usuários Simples (só ID e nome)
-void listarUsuarios(Pessoa Cadastro[], int x); // Listar usuários Cimpleto (todos os dados (menos senha né ;-;))
-/* Prototipação das funções */
+void listarUsuarios(Pessoa Cadastro[], int x, bool mode);	// Listar usuários
+/* Prototipação das funções Clientes */
 
+
+/* Prototipação das funções Bicicletas */
+void cadastrarB(Bicicleta CadastroB[], int cargo);
+bool coletarDadosB(Bicicleta CadastroB[]);
+bool abrirArquivoB(int tipo);
+bool reescreverArquivoB(Bicicleta CadastroB[]);
+bool editarBicicleta(Bicicletas Bicicleta[], Pessoa Cadastro[], int id);
+void listarBicicletas(Bicicletas Bicicleta[], Pessoa Cadastro[], int x);
+/* Prototipação das funções Bicicletas */
 
 
 

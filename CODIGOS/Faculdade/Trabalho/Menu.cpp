@@ -176,6 +176,7 @@ void menuCadastro(Pessoa Cadastro[]){
 				break;
 			case 2:
 				//inserir "listarUsuarios(9)" para poder ver o ID do usuário
+				listarUsuarios(Cadastro, 9, false);
 				cout << "digite o ID do usuário que deseja editar: " << endl;
 				cin >> id;
 				editarUsuario(Cadastro, id);
@@ -224,7 +225,7 @@ void menuListar(Pessoa Cadastro[]){
 		
 		switch(op){
 			case 1:
-				listarUsuariosS(Cadastro, 9);
+				listarUsuarios(Cadastro, 9);
 				break;
 			case 2:				
 				do{
@@ -237,15 +238,15 @@ void menuListar(Pessoa Cadastro[]){
 					cin >> lop;
 					switch(lop){
 						case 1:
-							listarUsuariosS(Cadastro, 0);
+							listarUsuarios(Cadastro, 0, false);
 							lop = 0;
 							break;
 						case 2:
-							listarUsuariosS(Cadastro, 1);
+							listarUsuarios(Cadastro, 1, false);
 							lop = 0;
 							break;
 						case 3:
-							listarUsuariosS(Cadastro, 2);
+							listarUsuarios(Cadastro, 2, false);
 							lop = 0;
 							break;
 						case 0:
@@ -261,7 +262,7 @@ void menuListar(Pessoa Cadastro[]){
 
 				break;
 			case 3:	
-				listarUsuariosS(Cadastro, 10);
+				listarUsuarios(Cadastro, 10, false);
 				break;
 			case 4:
 				// listarBicicletas(1);
