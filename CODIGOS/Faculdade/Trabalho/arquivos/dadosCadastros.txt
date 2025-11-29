@@ -1,15 +1,15 @@
 1|adm|0|adm|0|adm|1
 2|pedro|45|pedro@pedro|1|senha456|1
-3|robson|66|robson@robson|2|senha789|0
+3|robson|66|robson@robson|2|senha789|1
 4|ana|28|ana@ana|2|ana123|1
 5|beatriz|32|beatriz@beatriz|1|beatriz456|0
 6|carlos|19|carlos@grandeCarlos.com|2|carlitos99|1
 7|fernanda|51|fernanda@fernanda.com|2|fefe2025|1
-9|maria|40|maria@maria|2|mariaPass|0
+8|bruno|21|bruno@bruno|2|bruno123|0
+9|maria|40|maria@maria|2|mariaPass|1
 10|tiago|29|tiago@tiago|1|tiagoWork|0
 11|julia|22|juliana@juliana|2|jujuba22|1
 12|marcos|37|marcos@marcos|2|m@rcosP|1
 13|sandra|48|sandra@sandra|1|sandrinhaRH|1
-14|bruno|21|bruno@bruno|2|bruno123|0
-15|Teste aaa|15|teste@aaa.com|1|123456|1
-16|Funcionario 16|999|funcionario@16.com|1|16|1
+15|Ricardo|25|ricardo@bike.com|1|rick123|1
+16|Amanda|34|amanda@bike.com|1|amandaRH|1

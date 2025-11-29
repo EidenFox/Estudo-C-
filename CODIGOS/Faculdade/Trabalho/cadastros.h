@@ -73,7 +73,7 @@ extern FILE *pont_arq2;
 /* STRUCTS */
 typedef struct Pessoa {
     int id;
-    char nome[TAMNOME];
+    std::string nome;
     int idade;
     int cargo;
     std::string email;
@@ -102,12 +102,15 @@ void listarUsuarios(Pessoa Cadastro[], int x, bool mode);	// Listar usuários
 
 
 /* Prototipação das funções Bicicletas */
-void cadastrarB(Bicicleta CadastroB[], int cargo);
-bool coletarDadosB(Bicicleta CadastroB[]);
+void cadastrarB(Bicicletas Bicicleta[]);
+bool coletarDadosB(Bicicletas Bicicleta[]);
 bool abrirArquivoB(int tipo);
-bool reescreverArquivoB(Bicicleta CadastroB[]);
+bool reescreverArquivoB(Bicicletas Bicicleta[]);
 bool editarBicicleta(Bicicletas Bicicleta[], Pessoa Cadastro[], int id);
 void listarBicicletas(Bicicletas Bicicleta[], Pessoa Cadastro[], int x);
+void devolucao(Bicicletas Bicicleta[], Pessoa Cadastro[], int id);
+void aluguel(Bicicletas Bicicleta[], Pessoa Cadastro[], int id, int idP);
+// int getIndiceB (Bicicletas Bicicleta[], Pessoa Cadastro[], id);
 /* Prototipação das funções Bicicletas */
 
 

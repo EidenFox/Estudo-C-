@@ -78,18 +78,30 @@ void cadastrarB(Bicicletas Bicicleta[]) {
             }
 
 			if (totalB == 0) {
-                Bicicleta[totalB].id = 0; 
+                Bicicleta[totalB].id = 1; 
             } else {
-                Bicicleta[totalB].id = Bicicleta[totalB - 1].id + 1;
+				int maiorID = 0;
+				for(int i = 0; i < totalB; i++) {
+					if(Bicicleta[i].id > maiorID) maiorID = Bicicleta[i].id;
+				}
+				Bicicleta[totalB].id = maiorID + 1;
             }
+
+
 	        fprintf(pont_arq2, "%d|", Bicicleta[totalB].id);
 				
 	        cout << "Digite o Modelo do Bicicleta: ";
 	        getline(cin, Bicicleta[totalB].modelo);
+			if (Bicicleta[totalB].modelo.empty()) {
+				Bicicleta[totalB].modelo = "-";
+			}
 	        fprintf(pont_arq2, "%s|", Bicicleta[totalB].modelo.c_str());
 	
 	        cout << "Digite uma descrição Bicicleta: ";
 	        getline(cin, Bicicleta[totalB].descricao);
+			if (Bicicleta[totalB].descricao.empty()) {
+				Bicicleta[totalB].descricao = "-";
+			}
             fprintf(pont_arq2, "%s|", Bicicleta[totalB].descricao.c_str());
 
 			Bicicleta[totalB].idPessoa = 0; //no cadastro o idPessoa é 0, indicando que não está alugada
@@ -97,9 +109,6 @@ void cadastrarB(Bicicletas Bicicleta[]) {
 
 			Bicicleta[totalB].status = true; //Status true no cadastro
 	        fprintf(pont_arq2, "%d\n", 1);
-			
-	
-	        totalB++;
 			
 	        cout << "Realizar novo cadastro? [S/N]: ";
 	        cin >> sairC;
@@ -201,7 +210,7 @@ bool editarBicicleta(Bicicletas Bicicleta[], Pessoa Cadastro[], int id) {
 				if(indicePessoa != -1){
 					cout << Cadastro[indicePessoa].nome << " (ID: " << Cadastro[indicePessoa].id << ")" << endl;
 				}else{
-					ccout << "[ERRO] Usuário ID " << Bicicleta[indice].idPessoa << " não encontrado!" << endl;
+					cout << "[ERRO] Usuário ID " << Bicicleta[indice].idPessoa << " não encontrado!" << endl;
 				}
 			}else{
 				cout << "!- Disponível -!" << endl;
@@ -224,10 +233,16 @@ bool editarBicicleta(Bicicletas Bicicleta[], Pessoa Cadastro[], int id) {
 			case 1:
 				cout << "Novo Modelo: ";
 				getline(cin, Bicicleta[indice].modelo);
+				if (Bicicleta[indice].modelo.empty()) {
+					Bicicleta[indice].modelo = "-";
+				}
 				break;
 			case 2:
 				cout << "Nova descrição: ";
 				getline(cin, Bicicleta[indice].descricao);
+				if (Bicicleta[indice].descricao.empty()) {
+					Bicicleta[indice].descricao = "-";
+				}
 				break;
 			case 3:
 				cout << "Novo ID de Usuário: ";
@@ -281,8 +296,18 @@ bool editarBicicleta(Bicicletas Bicicleta[], Pessoa Cadastro[], int id) {
 /* FUNÇÃO PARA LISTAR BICICLETAS*/
 void listarBicicletas(Bicicletas Bicicleta[], Pessoa Cadastro[], int x){
 	char sair;
+	int id;
+	totalB = 0;
+	if (!coletarDadosB(Bicicleta)) {
+		cout << "Banco de dados Vazio ou Erro ao ler dados para edição." << endl;
+		return;
+	}
+
+
 	cout << "--------------------\n-------LISTAR-------\n--------------------\n" << endl;
-	
+	if (x == 3){
+		cout << "Digite o ID da pessoa que deseja listar: "; cin >> id;
+	}
 	for (int i = 0; i <= totalB; i++){
 		string nome = "[Erro: Usuario nao encontrado]";
 
@@ -300,17 +325,27 @@ void listarBicicletas(Bicicletas Bicicleta[], Pessoa Cadastro[], int x){
 
 
 		
-		if (x == 9 && Bicicleta[i].status){	// se for 9 lista TODOS os ativos
+		if ((x == 9) && (Bicicleta[i].status)){	// se for 9 lista TODOS os ativos
 			cout << "ID: " << Bicicleta[i].id << endl;
 			cout << "Modelo: " << Bicicleta[i].modelo << endl;
 			cout << "Alugada por: " << nome << endl;
 			cout << "----------" << endl;
-		}else if (x == 10 && !Bicicleta[i].status){	// se for 10 lista só os inativos
+		}else if ((x == 10) && (!Bicicleta[i].status)){	// se for 10 lista só os inativos
 			cout << "ID: " << Bicicleta[i].id << endl;
 			cout << "Modelo: " << Bicicleta[i].modelo << endl;
 			cout << "Alugada por: " << nome << endl;
 			cout << "----------" << endl;		
-		}else if ((x == Bicicleta[i].idPessoa) && Bicicleta[i].status){	// se x for igual ao IdPessoa, lista os ativos deste usuário
+		}else if ((x == 1) && (Bicicleta[i].status)){	// se for 1 lista todas as ALUGADAS
+			cout << "ID: " << Bicicleta[i].id << endl;
+			cout << "Modelo: " << Bicicleta[i].modelo << endl;
+			cout << "Alugada por: " << nome << endl;
+			cout << "----------" << endl;
+		}else if ((x == 2) && (Bicicleta[i].idPessoa == 0) && (Bicicleta[i].status)){	// se for 2 lista todas as DISPONIVEIS
+			cout << "ID: " << Bicicleta[i].id << endl;
+			cout << "Modelo: " << Bicicleta[i].modelo << endl;
+			cout << "Alugada por: " << nome << endl;
+			cout << "----------" << endl;
+		}else if ((x == 3) && (Bicicleta[i].idPessoa == id)){	// se for 3 e id for igual ao IdPessoa, lista os deste usuário
 			cout << "ID: " << Bicicleta[i].id << endl;
 			cout << "Modelo: " << Bicicleta[i].modelo << endl;
 			cout << "Alugada por: " << nome << endl;
@@ -320,4 +355,135 @@ void listarBicicletas(Bicicletas Bicicleta[], Pessoa Cadastro[], int x){
 	
 	pausar();
 }
-/* FUNÇÃO PARA LISTAR BICICLETAS*/
+/* FUNÇÃO PARA LISTAR BICICLETAS */
+
+/* FUNÇÃO PARA DEVOLVER BICICLETA */
+void devolucao(Bicicletas Bicicleta[], Pessoa Cadastro[], int id){
+    char confirmC;
+	string nome = "[Erro: Usuario nao encontrado]";
+	int indice = -1;
+	bool check = false;
+    for(int i = 0; i <= totalB; i++){
+        if(Bicicleta[i].id == id){
+            indice = i;	//captura qual indice tem o ID que queremos alterar
+            break;
+        }
+    }
+
+    if (indice == -1) {	//se o indice for -1 é pq nn achou o id
+        cout << "Bicicleta com ID " << id << " não encontrado." << endl;
+        timer(3);
+        return;
+    }
+
+
+	for (int j = 0; j <= total; j++) {
+		if (Bicicleta[indice].idPessoa == Cadastro[j].id) {
+			nome = Cadastro[j].nome;	// pega a string do nome baseado no id da pessoa
+			check = true;
+			break;
+		}
+	}
+
+	if (!check){
+		cout << "Bicicleta não se encontra alugada!" << endl;
+		timer(3);
+		return;
+	}
+
+
+	cout << "--DEVOLUÇÃO-DE-BICICLETA--" << endl;
+	cout << "ID: " << Bicicleta[indice].id << endl;
+	cout << "Modelo: " << Bicicleta[indice].modelo << endl;
+	cout << "Alugada por: " << nome << endl;
+	cout << "\nTem certeza que deseja Devolver? [s/n]" << endl;
+	cin >> confirmC;
+	cignore;
+	if (tolower(confirmC) == 's'){
+		Bicicleta[indice].idPessoa = 0;
+
+		//chama a função q reescreve o arquivo
+		if(reescreverArquivoB(Bicicleta)){
+			cout << "Bicicleta Devolvida com Sucesso!" << endl;
+		}else{
+			cout << "Erro ao atualizar arquivo!" << endl;
+		}
+		timer(2);
+		return;
+	}
+	cout << "Operação Cancelada!" << endl;
+	timer(3);	
+}
+/* FUNÇÃO PARA DEVOLVER BICICLETA */
+
+
+
+/* FUNÇÃO PARA ALUGAR BICICLETA */
+void aluguel(Bicicletas Bicicleta[], Pessoa Cadastro[], int id, int idP){
+    char confirmC;
+	string nome = "[Erro: Usuario nao encontrado]";
+	int indice = -1;
+	int indiceP = -1;
+	bool check = false;
+	
+    
+	for(int i = 0; i <= totalB; i++){
+		if(Bicicleta[i].id == id){
+			indice = i;	//captura qual indice tem o ID que queremos alterar
+            break;
+        }
+    }
+	
+	if (indice == -1) {	//se o indice for -1 é pq nn achou o id
+		cout << "Bicicleta com ID " << id << " não encontrado." << endl;
+		timer(3);
+		return;
+	}
+
+
+	for (int j = 0; j <= total; j++) {
+		if (Cadastro[j].id == idP) {
+			nome = Cadastro[j].nome;	// pega a string do nome baseado no id da pessoa
+			indiceP = j;
+			check = true;
+			break;
+		}
+	}
+
+	if (Bicicleta[indice].idPessoa != 0){
+		cout << "Bicicleta já Alugada!" << endl;
+		timer(3);
+		return;
+	}
+
+	if (indiceP == -1){	//se o indice for -1 é pq nn achou o id do usuário
+		cout << nome << endl;
+		return;
+	}
+
+
+	cout << "--ALUGUEL-DE-BICICLETA--" << endl;
+	cout << "ID: " << Bicicleta[indice].id << endl;
+	cout << "Modelo: " << Bicicleta[indice].modelo << endl;
+	cout << "Alugar para: " << nome << endl;
+	cout << "\nTem certeza que deseja Alugar? [s/n]" << endl;
+	cin >> confirmC;
+	cignore;
+	if (tolower(confirmC) == 's'){
+		Bicicleta[indice].idPessoa = idP;
+
+		//chama a função q reescreve o arquivo
+		if(reescreverArquivoB(Bicicleta)){
+			cout << "Bicicleta Alugada com Sucesso!" << endl;
+		}else{
+			cout << "Erro ao atualizar arquivo!" << endl;
+		}
+		timer(2);
+		return;
+	}
+	cout << "Operação Cancelada!" << endl;
+	timer(3);	
+}
+/* FUNÇÃO PARA ALUGAR BICICLETA */
+
+

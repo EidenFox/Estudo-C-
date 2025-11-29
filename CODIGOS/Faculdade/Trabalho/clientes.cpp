@@ -30,11 +30,12 @@ bool coletarDados(Pessoa Cadastro[]) {
       
         linha[strcspn(linha, "\n")] = '\0';   // Remove \n do final da linha
 
+		
         char *token = strtok(linha, "|");
         if (token != NULL) Cadastro[i].id = atoi(token);	//ID
 
         token = strtok(NULL, "|");
-        if (token != NULL) strncpy(Cadastro[i].nome, token, TAMNOME);	//Nome
+        if (token != NULL) Cadastro[i].nome = token;	//Nome
 
         token = strtok(NULL, "|");
         if (token != NULL) Cadastro[i].idade = atoi(token);	//Idade
@@ -83,17 +84,23 @@ void cadastrar(Pessoa Cadastro[], int cargo) {
             }
 
 			if (total == 0) {
-                Cadastro[total].id = 0; 
+                Cadastro[total].id = 1; 
             } else {
-                Cadastro[total].id = Cadastro[total - 1].id + 1;
+				int maiorID = 0;
+				for(int i = 0; i < total; i++) {
+					if(Cadastro[i].id > maiorID) maiorID = Cadastro[i].id;
+				}
+				Cadastro[total].id = maiorID + 1;
             }
-	        fprintf(pont_arq, "%d|", Cadastro[total].id);
-	
 
+			fprintf(pont_arq, "%d|", Cadastro[total].id);
 				
 	        cout << "Digite o nome do Usuário: ";
-	        cin.getline(Cadastro[total].nome, 50);
-	        fprintf(pont_arq, "%s|", Cadastro[total].nome);
+	        getline(cin, Cadastro[total].nome);
+			if (Cadastro[total].nome.empty()) {
+				Cadastro[total].nome = "-";
+			}
+	        fprintf(pont_arq, "%s|", Cadastro[total].nome.c_str());
 	
 	        cout << "Digite a idade: ";
 			cin >> Cadastro[total].idade;
@@ -102,6 +109,9 @@ void cadastrar(Pessoa Cadastro[], int cargo) {
 	
 	        cout << "Digite o email: ";
 	        getline(cin, Cadastro[total].email);
+			if (Cadastro[total].email.empty()) {
+				Cadastro[total].email = "-";
+			}
 	        fprintf(pont_arq, "%s|", Cadastro[total].email.c_str());
 
 
@@ -115,13 +125,13 @@ void cadastrar(Pessoa Cadastro[], int cargo) {
 
 			cout << "Peça para que o usuário digite uma Senha: ";
 	        getline(cin, Cadastro[total].senha);
+			if (Cadastro[total].senha.empty()) {
+				Cadastro[total].senha = "-";
+			}
 	        fprintf(pont_arq, "%s|", Cadastro[total].senha.c_str());
 
 			Cadastro[total].status = true; 
 	        fprintf(pont_arq, "%d\n", 1);
-			
-	
-	        total++;
 			
 	        cout << "Realizar novo cadastro? [S/N]: ";
 	        cin >> sairC;
@@ -163,14 +173,19 @@ bool abrirArquivo(int tipo){
 /* FUNÇÃO PARA CHECAR O LOGIN*/
 int checarLogin(Pessoa Cadastro[], string email, string senha){
 
-		string lEmail = toLower(email);
-		string lEmailCheck;
+	string lEmail = toLower(email);
+	string lEmailCheck;
+	// cout << "CHECANDO LOGIN" << endl;
 	for (int i = 0; i <= total; i++){
 		lEmailCheck = toLower(Cadastro[i].email);
+		// cout << "EMAILCHECK: " << lEmailCheck << endl;
+		// cout << "SENHACHECK: " << Cadastro[i].senha << endl;
 		if(lEmail == lEmailCheck && senha == Cadastro[i].senha){
 			return i;
+			timer (3);
 		}
 	}
+	timer (3);
 	return -1;
 }
 /* FUNÇÃO PARA CHECAR O LOGIN*/
@@ -184,7 +199,7 @@ bool reescreverArquivo(Pessoa Cadastro[]) {
 		if(Cadastro[i].nome[0] != '\0'){
 			fprintf(pont_arq, "%d|%s|%d|%s|%d|%s|%d\n", 
 				Cadastro[i].id, 
-				Cadastro[i].nome, 
+				Cadastro[i].nome.c_str(), 
 				Cadastro[i].idade, 
 				Cadastro[i].email.c_str(), 
 				Cadastro[i].cargo, 
@@ -248,7 +263,10 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
 		switch (op) {
 			case 1:
 				cout << "Novo Nome: ";
-				cin.getline(Cadastro[indice].nome, TAMNOME);
+				getline(cin, Cadastro[indice].nome);
+				if (Cadastro[indice].nome.empty()) {
+					Cadastro[indice].nome = "-";
+				}
 				break;
 			case 2:
 				cout << "Nova Idade: ";
@@ -258,10 +276,16 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
 			case 3:
 				cout << "Novo Email: ";
 				getline(cin, Cadastro[indice].email);
+				if (Cadastro[indice].email.empty()) {
+					Cadastro[indice].email = "-";
+				}
 				break;
 			case 4:
 				cout << "Nova Senha: ";
 				getline(cin, Cadastro[indice].senha);
+				if (Cadastro[indice].senha.empty()) {
+					Cadastro[indice].senha = "-";
+				}
 				break;
 			case 5:
 				cout << "Novo cargo:\n[0] Administrador\n[1] Funcionário\n[2] Cliente" << endl;
@@ -301,7 +325,7 @@ bool editarUsuario(Pessoa Cadastro[], int id) {
 
 
 /* FUNÇÃO PARA LISTAR USUÁRIOS */
-void listarUsuario(Pessoa Cadastro[], int x, bool mode){
+void listarUsuarios(Pessoa Cadastro[], int x, bool mode){
 	char sair;
 	cout << "--------------------\n-------LISTAR-------\n--------------------\n" << endl;
 
