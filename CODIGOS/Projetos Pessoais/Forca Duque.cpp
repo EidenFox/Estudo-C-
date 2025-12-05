@@ -1,6 +1,7 @@
-/* Desafio do curso de C++
-	Criar um jogo de forca usando matrizes
-*/
+/**
+*	Projeto atualizado do repositório do Duque: https://github.com/DuqueIguro/Estudo-Cpp/blob/main/Programas/JogoForca.cpp
+* 	
+**/
 
 #include <stdio.h>
 #include <iostream>
@@ -133,4 +134,8 @@ int main(){
 	Author: DuqueIguro
 	Date: 01/05/25
 	Description: Um jogo da forca com laços de repetição e matrizes.
+
+	Edited by: EidenFox
+	Date: 02/08/2025
+	Description: Atualizado parte da lógica e adicionada logica de "Letras usadas" e "Novo jogo".
 */
